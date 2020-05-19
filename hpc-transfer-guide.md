@@ -4,6 +4,8 @@ Command-line interface data-transfer utilities (clients) are available natively 
 
 Due to security risks, please be mindful of the type of information being transferred. Where possible, omit all information that may be considered confidential. For examples of confidential information that requires additional consideration visit http://itservices.usc.edu/security/sensitive-info.
 
+Note: If you get an SSH error about 'remote host identification has changed' when attempting to use one of these commands, the solution is to clear your 'known_hosts' file that is referenced in the error message. Open the 'known_hosts' key and manually delete the line beginning with 'hpc-transfer.usc.edu' and then save. Try the command again, confirm the new authenticity of host, and the error should be solved.
+
 ## SFTP: Secure File Transfer Protocol
 
 SFTP is a command-line-based transfer tool that is the equivalent of a GUI-based SFTP client. Like SSH, SFTP requires an initial login and authentication, and your session will remain open until you exit or are disconnected. You will remain connected to HPC and able to upload(put) and download(get) files without further login or authentication.
@@ -122,4 +124,3 @@ total size is 10079  speedup is 0.98
 ```
 
 The `-a` option specifies that it will be an archive (and so preserves permissions and modification times, and recursively transfers directories). The `-v` option turns on verbose mode, and the `--progress` option shows transfer progress. Rsync provides many options; see the manual page (`man rsync`) for details.
-
