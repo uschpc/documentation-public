@@ -19,7 +19,7 @@ First, delete any files in /staging that are no longer needed. This will reduce 
 You can then use a `cp` command to copy files from /staging to /scratch. For example:
 
 ```
-cp -avr /staging/ttrojan/* /scratch/ttrojan/
+cp -av /staging/ttrojan/* /scratch/ttrojan/
 ```
 
 This example will copy all files and directories, recursively, in your /staging directory into your /scratch directory. To copy specific directories or files, simply replace the wildcard * with the specific directory or file names.
