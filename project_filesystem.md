@@ -62,30 +62,26 @@ To load a package, ensure you have appended your `PYTHONPATH` environment variab
 
 R allows you to install and load packages from arbitrary directories.
 
-To install R packages in a library other than the default (`~/R`), you can either use the `lib.loc` argument in `install.package` function:
+To install R packages in a library other than the default (`~/R`), you can either use the `lib.loc` argument for the `install.packages()` function:
 
 ```r
-install.packages("package_name", lib.loc="package_path")
+install.packages("package_name", lib.loc = "package_path")
 ```
 
-Or, if using the command line function `R CMD INSTALL`, you can use:
+Or, if using the command-line function `R CMD INSTALL`, you can use:
 
 ```sh
 R CMD INSTALL --no-staged-install --library=package_path package_file.tar.gz
 ```
 
-Where `package_path` is the absolute path to where you want your R packages to be installed, and the `--no-staged-install` flag instructs `R CMD INSTALL` to directly install the package in the folder, avoiding pre-installation in a temp folder. Using the `--no-staged-install` flag potentially reduces issues if HPC is experiencing I/O problems (tested empirically by one of our users). In the case of `package_path`, it can be something of the form:
+where `package_path` is the absolute path to where you want your R packages to be installed and the `--no-staged-install` flag instructs `R CMD INSTALL` to directly install the package in the folder, avoiding pre-installation in a temporary folder. Using the `--no-staged-install` flag potentially reduces issues if HPC is experiencing I/O problems (tested empirically by one of our users). For `package_path`, it can be something of the form `/scratch/<username>/r_packages/3.6`.
 
-```
-/scratch/<username>/r_packages/3.6
-```
-
-Alternatively, users can take advantage of symbolic links (`symlinks`) to avoid specifying library location and allow R to automatically handle that as explained [here](https://hpcc.usc.edu/resources/documentation/r/).
+Alternatively, users can take advantage of symbolic links (`symlinks`) to avoid specifying a library location and allow R to automatically handle that as explained [here](https://hpcc.usc.edu/resources/documentation/r/).
 
 *Note: We recommend keeping packages separated by R version (Major.Minor) to avoid compatibility issues.*
 
 To load an R package, run a command of the form:
 
 ```r
-library("package_name", lib.loc="package_path")
+library("package_name", lib.loc = "package_path")
 ```
