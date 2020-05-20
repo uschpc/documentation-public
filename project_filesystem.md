@@ -62,16 +62,30 @@ To load a package, ensure you have appended your `PYTHONPATH` environment variab
 
 R allows you to install and load packages from arbitrary directories.
 
-To install an R package, run a command of the form:
+To install R packages in a library other than the default (`~/R`), you can either use the `lib.loc` argument in `install.package` function:
 
-    install.packages("package_name", lib.loc="package_path")
+```r
+install.packages("package_name", lib.loc="package_path")
+```
 
-Where `package_path` is the absolute path to where you want your R packages to be installed. It can be something of the form:
+Or, if using the command line function `R CMD INSTALL`, you can use:
 
-    /scratch/<username>/r_packages/3.6
+```sh
+R CMD INSTALL --no-staged-install --library=package_path package_file.tar.gz
+```
+
+Where `package_path` is the absolute path to where you want your R packages to be installed, and the `--no-staged-install` flag instructs `R CMD INSTALL` to directly install the package in the folder, avoiding pre-installation in a temp folder. Using the `--no-staged-install` flag potentially reduces issues if HPC is experiencing I/O problems (tested empirically by one of our users). In the case of `package_path`, it can be something of the form:
+
+```
+/scratch/<username>/r_packages/3.6
+```
+
+Alternatively, users can take advantage of symbolic links (`symlinks`) to avoid specifying library location and allow R to automatically handle that as explained [here](https://hpcc.usc.edu/resources/documentation/r/).
 
 *Note: We recommend keeping packages separated by R version (Major.Minor) to avoid compatibility issues.*
 
 To load an R package, run a command of the form:
 
-    library("package_name", lib.loc="package_path")
+```r
+library("package_name", lib.loc="package_path")
+```
