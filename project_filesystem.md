@@ -30,9 +30,50 @@ In order to upgrade the system, we ask that you **migrate your data on /staging 
 
 ### How should I perform the data migration from /staging to /scratch?
 
-Migrate data on the hpc-transfer node, which has been recently upgraded with new hardware and new 40GB links. It can migrate data in and out much faster than the login nodes. Instructions on how to transfer files using hpc-transfer can be found here: https://github.com/uschpc/documentation-public/blob/master/hpc-transfer-guide.md
+There are two options to migrate data using an `rsync` command: (1) use the hpc-transfer node or (2) submit a SLURM job.
 
-Please note: regenerating data is much faster than copying data. For example, if you have a large custom Python or R installation under /staging, simply re-install under /scratch rather than copying.
+Note: first delete any files in /staging that are no longer needed. This will reduce the time needed to copy files. Additionally, regenerating data is much faster than copying data. For example, if you have a large custom Python or R installation under /staging, simply re-install it under /scratch rather than copying.
+
+#### hpc-transfer
+
+The hpc-transfer node, which has been recently upgraded with new hardware and new 40GB links, can migrate data in and out much faster than the login nodes.
+
+From your computer, log in to hpc-transfer.usc.edu and authenticate via Duo:
+
+```
+ssh ttrojan@hpc-transfer.usc.edu
+```
+
+Note: If you get an SSH error about 'remote host identification has changed' when attempting to connect, the solution is to clear your 'known_hosts' file that is referenced in the error message. Open the 'known_hosts' key and manually delete the line beginning with 'hpc-transfer.usc.edu' and then save. Try the command again, confirm the new authenticity of host, and the error should be solved.
+
+Once connected, use `screen` in combination with an `rsync` command, because the transfer could take a long time.
+
+First, enter `screen` at the command line to start a `screen` session.
+
+Second, enter an `rsync` command that looks something like the following:
+
+```
+rsync -avP /staging/proj/user/ /scratch/user/
+```
+
+Be sure to substitute your correct directory paths. This will start the transfer and display its progress.
+
+Next, depress the keys `ctrl-a d` to detach the `screen` session, which continues the `rsync` job in the background. You can then continue other work or log out and the transfer will continue. To reattach that session and check progress enter `screen -r`. Once the transfer is complete, you can close the screen session by entering `exit` from within the session.
+
+#### SLURM job
+
+Alternatively, if you anticipate a long, multi-day transfer time, submit a SLURM job script using Infiniband nodes that looks something like the following:
+
+```
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --time=48:00:00
+#SBATCH --constraint=IB
+
+rsync -avP /staging/proj/user/ /scratch/user/
+```
+
+Be sure to substitute the anticipated walltime needed and your directory paths.
 
 ## Backups
 
