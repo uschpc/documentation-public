@@ -4,26 +4,6 @@ Command-line interface data-transfer utilities (clients) are available natively 
 
 Due to security risks, please be mindful of the type of information being transferred. Where possible, omit all information that may be considered confidential. For examples of confidential information that requires additional consideration visit http://itservices.usc.edu/security/sensitive-info.
 
-## Copying files from /staging to /scratch
-
-From your computer, log in to hpc-transfer.usc.edu and authenticate via Duo:
-
-```
-ssh ttrojan@hpc-transfer.usc.edu
-```
-
-Note: If you get an SSH error about 'remote host identification has changed' when attempting to use one of these commands, the solution is to clear your 'known_hosts' file that is referenced in the error message. Open the 'known_hosts' key and manually delete the line beginning with 'hpc-transfer.usc.edu' and then save. Try the command again, confirm the new authenticity of host, and the error should be solved.
-
-First, delete any files in /staging that are no longer needed. This will reduce the time needed to copy files. Additionally, regenerating data is much faster than copying data. For example, if you have a large custom Python or R installation under /staging, simply re-install it under /scratch rather than copying.
-
-You can then use a `cp` command to copy files from /staging to /scratch. For example:
-
-```
-cp -av /staging/ttrojan/* /scratch/ttrojan/
-```
-
-This example will copy all files and directories, recursively, in your /staging directory into your /scratch directory. To copy specific directories or files, simply replace the wildcard * with the specific directory or file names.
-
 ## SFTP: Secure File Transfer Protocol
 
 SFTP is a command-line-based transfer tool that is the equivalent of a GUI-based SFTP client. Like SSH, SFTP requires an initial login and authentication, and your session will remain open until you exit or are disconnected. You will remain connected to HPC and able to upload(put) and download(get) files without further login or authentication.
