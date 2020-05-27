@@ -110,7 +110,7 @@ R allows you to install and load packages from arbitrary directories.
 To install R packages in a library other than the default (`~/R`), you can either use the `lib.loc` argument for the `install.packages()` function:
 
 ```r
-install.packages("package_name", lib.loc = "package_path")
+install.packages("package_name", lib = "package_path")
 ```
 
 Or, if using the command-line function `R CMD INSTALL`, you can use:
