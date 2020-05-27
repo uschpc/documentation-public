@@ -18,15 +18,17 @@ The new /scratch filesystem has a capacity of 806TB (compared to 266TB on /stagi
 
 Your scratch directory is accessible only to you, and each user account is limited to a 10TB quota. If you need more space than this, please contact us at hpc@usc.edu.
 
+## /scratch2: coming soon
+
+We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users. The upgrade to /scratch2 will take place after June 5, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs and all data currently on /staging should be migrated to /scratch.
+
 ## /staging: soon to be decommissioned
 
 Your staging directory is located at:
 
     /staging/<proj_name>/<user_name>
 
-We are preparing to replace the current /staging filesystem with another 1PB high-performing parallel file system in the next few weeks. Once the upgraded file system comes up, each user will receive another 10-20TB quota.
-
-In order to upgrade the system, we ask that you **migrate your data on /staging to /scratch** as soon as possible.
+We are preparing to replace the current /staging filesystem with another 1PB high-performing parallel file system. In order to upgrade the system, we ask that you **migrate your data on /staging to /scratch** before June 4, 2020.
 
 ### How should I perform the data migration from /staging to /scratch?
 
@@ -34,7 +36,7 @@ There are two options to migrate data using an `rsync` command: (1) use the hpc-
 
 Note: first delete any files in /staging that are no longer needed. This will reduce the time needed to copy files. Additionally, regenerating data is much faster than copying data. For example, if you have a large custom Python or R installation under /staging, simply re-install it under /scratch rather than copying.
 
-#### hpc-transfer
+#### Via hpc-transfer
 
 The hpc-transfer node, which has been recently upgraded with new hardware and new 40GB links, can migrate data in and out much faster than the login nodes.
 
@@ -60,7 +62,7 @@ Be sure to substitute your correct directory paths. This will start the transfer
 
 Next, depress the keys `ctrl-a d` to detach the `screen` session, which continues the `rsync` job in the background. You can then continue other work or log out and the transfer will continue. To reattach that session and check progress enter `screen -r`. Once the transfer is complete, you can close the screen session by entering `exit` from within the session.
 
-#### SLURM job
+#### Via SLURM job
 
 Alternatively, if you anticipate a long, multi-day transfer time, submit a SLURM job script using Infiniband nodes that looks something like the following:
 
@@ -77,11 +79,11 @@ Be sure to substitute the anticipated walltime needed and your directory paths.
 
 ## Backups
 
-There are no backups for either /scratch or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
+There are no backups for either /scratch, /scratch2, or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
 
 ## Installing software
 
-Installing software on /scratch should be as easy as installing it to your project directory. However, there are some special cases where it is more difficult. If you require further assistance, please contact us at hpc@usc.edu.
+Installing software on /scratch and /scratch2 should be as easy as installing it to your project directory. However, there are some special cases where it is more difficult. If you require further assistance, please contact us at hpc@usc.edu.
 
 ### Python
 
