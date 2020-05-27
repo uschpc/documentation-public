@@ -81,7 +81,7 @@ There are no backups for either /scratch or /staging. Please keep additional cop
 
 We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users.
 
-The upgrade to /scratch2 will take place after June 5, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs.
+The upgrade to /scratch2 will be completed after June 15, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs.
 
 ## Installing software
 
