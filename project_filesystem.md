@@ -18,17 +18,13 @@ The new /scratch filesystem has a capacity of 806TB (compared to 266TB on /stagi
 
 Your scratch directory is accessible only to you, and each user account is limited to a 10TB quota. If you need more space than this, please contact us at hpc@usc.edu.
 
-## /scratch2: coming soon
-
-We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users. The upgrade to /scratch2 will take place after June 5, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs and all data currently on /staging should be migrated to /scratch.
-
 ## /staging: soon to be decommissioned
 
 Your staging directory is located at:
 
     /staging/<proj_name>/<user_name>
 
-We are preparing to replace the current /staging filesystem with another 1PB high-performing parallel file system. In order to upgrade the system, we ask that you **migrate your data on /staging to /scratch** before June 4, 2020.
+We are preparing to replace the current /staging filesystem with another 1PB high-performing parallel file system, and /staging will be decommissioned on June 5, 2020. In order to upgrade the system, we ask that you **migrate your data on /staging to /scratch** before June 4, 2020.
 
 ### How should I perform the data migration from /staging to /scratch?
 
@@ -79,7 +75,13 @@ Be sure to substitute the anticipated walltime needed and your directory paths.
 
 ## Backups
 
-There are no backups for either /scratch, /scratch2, or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
+There are no backups for either /scratch or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
+
+## /scratch2: coming soon
+
+We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users.
+
+The upgrade to /scratch2 will take place after June 5, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs.
 
 ## Installing software
 
