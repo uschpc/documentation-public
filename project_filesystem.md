@@ -107,7 +107,7 @@ To load a package, ensure you have appended your `PYTHONPATH` environment variab
 
 R allows you to install and load packages from arbitrary directories.
 
-To install R packages in a library other than the default (`~/R`), you can either use the `lib.loc` argument for the `install.packages()` function:
+To install R packages in a library other than the default (`~/R`), you can use the `lib` argument for the `install.packages()` function:
 
 ```r
 install.packages("package_name", lib = "package_path")
@@ -115,7 +115,7 @@ install.packages("package_name", lib = "package_path")
 
 Note: For R version 3.6.0 or greater, if the install fails because of `ERROR: moving to final location failed`, enter the command `Sys.setenv(R_INSTALL_STAGED = FALSE)` and try installing again.
 
-If using the command-line function `R CMD INSTALL`, you can use:
+Alternatively, if using the command-line function `R CMD INSTALL` to install packages from source, you can use:
 
 ```sh
 R CMD INSTALL --no-staged-install --library=package_path package_file.tar.gz
