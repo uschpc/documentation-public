@@ -113,13 +113,15 @@ To install R packages in a library other than the default (`~/R`), you can eithe
 install.packages("package_name", lib = "package_path")
 ```
 
-Or, if using the command-line function `R CMD INSTALL`, you can use:
+Note: For R version 3.6.0 or greater, if the install fails because of `ERROR: moving to final location failed`, enter the command `Sys.setenv(R_INSTALL_STAGED = FALSE)` and try installing again.
+
+If using the command-line function `R CMD INSTALL`, you can use:
 
 ```sh
 R CMD INSTALL --no-staged-install --library=package_path package_file.tar.gz
 ```
 
-where `package_path` is the absolute path to where you want your R packages to be installed and the `--no-staged-install` flag instructs `R CMD INSTALL` to directly install the package in the folder, avoiding pre-installation in a temporary folder. Using the `--no-staged-install` flag potentially reduces issues if HPC is experiencing I/O problems (tested empirically by one of our users). For `package_path`, it can be something of the form `/scratch/<username>/r_packages/3.6`.
+where `package_path` is the absolute path to where you want your R packages to be installed and the `--no-staged-install` flag instructs `R CMD INSTALL` to directly install the package in the folder, avoiding pre-installation in a temporary folder. Using the `--no-staged-install` flag potentially reduces issues if HPC is experiencing I/O problems. For `package_path`, it can be something of the form `/scratch/<username>/r_packages/3.6`.
 
 Alternatively, users can take advantage of symbolic links (`symlinks`) to avoid specifying a library location and allow R to automatically handle that as explained [here](https://hpcc.usc.edu/resources/documentation/r/).
 
