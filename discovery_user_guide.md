@@ -36,9 +36,9 @@ data since snapshots or semi-backups are not real backups.
 
 To check your current usage of quota on /home1 use:
 ```
-lfs quota -h -u $USER /home1
+$ myquota
 ```
-this check is also included in /usr/local/bin/myquota on `discovery.usc.edu`
+on `discovery.usc.edu`
 
 ###  Current Project directory (Read only)
 To make it easier to start testing, your project directory is available on a read-only basis to `discovery.usc.edu`
@@ -54,11 +54,11 @@ on /scratch. There's no backup of any sort on /scratch.
 ### Storage Summary
 |PATH|Quota|No. File quota|High Performance IO|
 |-|-|-|-|
-|/home1|100GB|300k|Yes|
+|/home1|100GB|2M|Yes|
 |/scratch|none|none|Yes|
 
 ### Transfering data
-You can use `discovery.usc.edu` directly as data transfer node. scp and sftp are recommended.
+You can use `discovery.usc.edu` directly as data transfer node for now. scp and sftp are recommended. 
 
 ## Software Modules (Lmod)
 One of the biggest user-facing changes to the test cluster is trading the setup.sh method of using software for the module system. Lmod has the ability to track software dependencies to ensure you have better control of your environment. (No more logging out and then back in to reset your environment!)
