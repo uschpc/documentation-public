@@ -43,9 +43,9 @@ To make it easier to start testing, your project directory is available on a rea
 
 ###  Scratch directory
 Your can find your scratch directory at 
-
-`/scratch/<user_name>`
-
+```
+/scratch/<user_name>`
+```
 /scratch is a high-performance parallel file system, you can run IO intensive jobs directly from /scratch. No quota will be enforced on /scratch. There's no backup of any sort on /scratch.
 
 ### Storage Summary
