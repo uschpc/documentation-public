@@ -30,9 +30,7 @@ Your home directory is of the form:
 
     /home1/<user_name>
 
-/home1 is a high-performance parallel file system, you can run IO intensive jobs directly from `/home1`. Quota for each user on `/home1` is
-100GB and 300k files. We keep 14 days of snapshots of `/home1` which can be think of as semi-backups, meaning if you accidentally deleted some data we are able to recover it within 14 days. You should always keep extra backups of your important
-data since snapshots or semi-backups are not real backups.
+/home1 is a high-performance parallel file system, you can run IO intensive jobs directly from `/home1`. However, quota for each user on `/home1` is only 100GB and 2M files. We keep 14 days of snapshots of `/home1` which can be think of as semi-backups, meaning if you accidentally deleted some data we are able to recover it within 14 days. (If the file was created and deleted whithin one day period, then the snapshot can't recover it) You should always keep extra backups of your important data since snapshots or semi-backups are not real backups.
 
 To check your current usage of quota on /home1 use:
 ```
@@ -44,12 +42,11 @@ on `discovery.usc.edu`
 To make it easier to start testing, your project directory is available on a read-only basis to `discovery.usc.edu`
 
 ###  Scratch directory
-Your can find your scratch directory at
+Your can find your scratch directory at 
 
-    /scratch/<user_name>
+`/scratch/<user_name>`
 
-/scratch is a high-performance parallel file system, you can run IO intensive jobs directly from /scratch. No quota is currently enforced
-on /scratch. There's no backup of any sort on /scratch.
+/scratch is a high-performance parallel file system, you can run IO intensive jobs directly from /scratch. No quota will be enforced on /scratch. There's no backup of any sort on /scratch.
 
 ### Storage Summary
 |PATH|Quota|No. File quota|High Performance IO|
