@@ -113,7 +113,7 @@ To install R packages in a library other than the default (`~/R`), you can use t
 install.packages("package_name", lib = "package_path")
 ```
 
-Note: For R version 3.6.0 or greater, if the install fails because of `ERROR: moving to final location failed`, enter the command `Sys.setenv(R_INSTALL_STAGED = FALSE)` and try installing again.
+Note: For R version 3.6.0, if the install fails because of `ERROR: moving to final location failed`, enter the command `Sys.setenv(R_INSTALL_STAGED = FALSE)` and try installing again.
 
 Alternatively, if using the command-line function `R CMD INSTALL` to install packages from source, you can use:
 
