@@ -82,6 +82,45 @@ There are no backups for either /scratch or /staging. Please keep additional cop
 We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users.
 
 The upgrade to /scratch2 will be completed after June 15, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs.
+## Sharing data with others
+
+It may become necessary to share data with other users. Using access control lists (ACL) you can specify permissions on a per-user basis.
+
+To minimize permission management, you may find it easist to create a designated directory just for sharing data like so
+
+```
+mkdir /scratch/user_name/shared
+```
+
+For each user you want to have access you will have to run these commands:
+
+1. Allow `guest_user` to access (but not write) to your scratch directory
+```
+setfacl -m user:guest_user:rx /scratch/user_name
+```
+
+
+2. Allow `guest_user` access to the shared directory
+```
+setfacl -d -R -m user:guest_user:rwx /scratch/user_name/shared
+```
+
+By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
+
+If you forget which permissions have been set you can run `getfacl` to check which ACLs have been set:
+
+```
+[ttroj@hpc-login2 new_dir2]$ getfacl test_file
+# file: test_file
+# owner: ttroj
+# group: usc
+user::rw-
+user:travlr:rwx                #effective:rw-
+group::rwx                      #effective:rw-
+mask::rw-
+other::---
+
+```
 
 ## Installing software
 
