@@ -18,6 +18,8 @@ The new /scratch filesystem has a capacity of 806TB (compared to 266TB on /stagi
 
 Your scratch directory is accessible only to you, and each user account is limited to a 10TB quota. If you need more space than this, please contact us at hpc@usc.edu.
 
+Please note that /scratch is only usable with compute nodes on the Infiniband network. To request these nodes, add the ` #SBATCH --constraint=IB` option to your job scripts.
+
 ## /staging: soon to be decommissioned
 
 Your staging directory is located at:
