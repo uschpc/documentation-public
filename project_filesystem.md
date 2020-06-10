@@ -76,12 +76,12 @@ Be sure to substitute the anticipated walltime needed and your directory paths.
 There are no backups for either /scratch or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
 
 ## Sharing data with others
-```
+
 When sharing your files, please keep these in mind:
 1. **never** set permission of dirs your own to **777**, which means **anybody** can delete your file
 1. sharing **read** permission is sufficent, do not allow others to **write** to dirs you own, nor should you write to another user's dir
 1. do not change permissions of your **HOME** dir and sub dirs, if it goes wrong, your login will be blocked because ssh checks for strict permissions
-```
+
 It may become necessary to share data with other users. Using access control lists (ACL) you can specify permissions on a per-user basis.
 
 To minimize permission management, you may find it easist to create a designated directory just for sharing data like so
