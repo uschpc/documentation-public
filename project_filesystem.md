@@ -34,6 +34,8 @@ There are no backups for either /scratch or /scratch2. Please keep additional co
 
 ## Sharing data with others
 
+By default, your /scratch/<user_name> permission is set to **700**, which means only you can read, write, and exec. Changing your directory's permission from 700 to something else is not recommended. 
+
 When sharing your files, please keep the following in mind:
 
 1. Never set the permissions of your own directories to **777**, which means that **anybody can delete your files**.
@@ -42,7 +44,6 @@ When sharing your files, please keep the following in mind:
 
 3. Do not change the permissions of your **HOME** directory and sub directories. If something goes wrong, your login will be blocked because ssh checks for strict permissions.
 
-By default, your /scratch/user_name permission is set to 700, which means only yourself can read,write,exec. Changing 700 to something else is not recommanded. 
 It may become necessary to share data with other users. Using access-control lists (ACLs), you can specify permissions on a per-user basis.
 
 To allow `guest_user` read access to your scratch directory:
