@@ -44,15 +44,10 @@ When sharing your files, please keep the following in mind:
 
 It may become necessary to share data with other users. Using access-control lists (ACLs), you can specify permissions on a per-user basis.
 
-To minimize permission management, you may find it easier to create a designated directory just for sharing data. You can do this like so:
-
+Allow `guest_user` read access to your scratch directory:
 ```
-mkdir /scratch/user_name/shared
-```
-Allow `guest_user` read access to the shared directory:
-```
-setfacl -Rdm user:guest_user:r-x /scratch/user_name/shared  (this will allow new files to be shared)
-setfacl -Rm user:guest_user:r-x /scratch/user_name/shared   (this will allow existing files to be shared)
+setfacl -Rdm u:guest_user:r-x /scratch/user_name  (this will allow new files to be shared)
+setfacl -Rm u:guest_user:r-x /scratch/user_name (this will allow existing files to be shared)
 ```
 
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
