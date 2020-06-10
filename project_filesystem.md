@@ -65,15 +65,21 @@ By adding the `-d` option, new files and directories will have the same ACLs as 
 If you forget which permissions have been set, you can run `getfacl` to check which ACLs have been set:
 
 ```
-[ttroj@hpc-login2 new_dir2]$ getfacl test_file
-# file: test_file
-# owner: ttroj
-# group: usc
-user::rw-
-user:travlr:rwx                #effective:rw-
-group::rwx                      #effective:rw-
-mask::rw-
+[ttroj@hpc-login2]$ getfacl /scratch2/user_name
+getfacl: Removing leading '/' from absolute path names
+# file: scratch2/user_name
+# owner: user_name
+# group: group_name
+user::rwx
+user:guest_user:r-x
+group::---
+mask::r-x
 other::---
+default:user::rwx
+default:user:guest_user:r-x
+default:group::---
+default:mask::r-x
+default:other::---
 
 ```
 
