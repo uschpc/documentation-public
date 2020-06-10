@@ -89,18 +89,10 @@ To minimize permission management, you may find it easist to create a designated
 ```
 mkdir /scratch/user_name/shared
 ```
-
-For each user you want to have access you will have to run these commands:
-
-1. Allow `guest_user` to access (but not write) to your scratch directory
+Allow `guest_user` read access to the shared directory
 ```
-setfacl -m user:guest_user:rx /scratch/user_name
-```
-
-
-2. Allow `guest_user` access to the shared directory
-```
-setfacl -d -R -m user:guest_user:rwx /scratch/user_name/shared
+setfacl -Rdm user:guest_user:rx /scratch/user_name/shared  (this will allow new files to be shared)
+setfacl -Rm user:guest_user:rx /scratch/user_name/shared   (this will allow existing files to be shared)
 ```
 
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
