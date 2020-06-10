@@ -55,6 +55,11 @@ To remove `guest_user` read access from your directory:
 setfacl -Rdm u:guest_user:--- /scratch/user_name   
 setfacl -Rm u:guest_user:--- /scratch/user_name   
 ```
+(optional) To completely remove `guest_user` record in ACL entry:
+```
+setfacl -Rdx u:guest_user /scratch/user_name   
+setfacl -Rx u:guest_user /scratch/user_name 
+```
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
 
 If you forget which permissions have been set, you can run `getfacl` to check which ACLs have been set:
