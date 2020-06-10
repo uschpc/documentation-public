@@ -52,8 +52,8 @@ setfacl -Rm u:guest_user:r-x /scratch/user_name   #(this will allow existing fil
 ```
 To remove `guest_user` read access from your directory:
 ```
-setfacl -Rdm u:guest_user:--- /scratch/user_name  #(this will allow new files to be shared)
-setfacl -Rm u:guest_user:--- /scratch/user_name   #(this will allow existing files to be shared)
+setfacl -Rdm u:guest_user:--- /scratch/user_name   
+setfacl -Rm u:guest_user:--- /scratch/user_name   
 ```
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
 
