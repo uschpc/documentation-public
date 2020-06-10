@@ -20,15 +20,11 @@ Your scratch directory is accessible only to you, and each user account is limit
 
 Please note that /scratch is only usable with compute nodes on the Infiniband network. To request these nodes, add the ` #SBATCH --constraint=IB` option to your job scripts.
 
-## /staging: soon to be decommissioned
+## /staging: decommissioned
 
-Your staging directory is located at:
+## /scratch2: 709TB 
 
-    /staging/<proj_name>/<user_name>
-
-We are preparing to replace the current /staging filesystem with another 1PB high-performing parallel file system, and /staging will be decommissioned on June 5, 2020. In order to upgrade the system, we ask that you **migrate your data on /staging to /scratch** before June 4, 2020.
-
-### How should I perform the data migration from /staging to /scratch?
+### How should I perform the data migration
 
 There are two options to migrate data using an `rsync` command: (1) use the hpc-transfer node or (2) submit a SLURM job.
 
@@ -79,13 +75,13 @@ Be sure to substitute the anticipated walltime needed and your directory paths.
 
 There are no backups for either /scratch or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
 
-## /scratch2: coming soon
-
-We will be replacing the /staging filesystem with a new, high-performing parallel filesystem called /scratch2. Like /scratch, /scratch2 will have much more space than staging, with 1PB of usable space available to users.
-
-The upgrade to /scratch2 will be completed after June 15, at which time the /staging filesystem will be decommissioned. /staging should no longer be used for production runs.
 ## Sharing data with others
-
+```
+When sharing your files, please keep these in mind:
+1. **never** set permission of dirs your own to **777**, which means **anybody** can delete your file
+1. sharing **read** permission is sufficent, do not allow others to **write** to dirs you own, nor should you write to another user's dir
+1. do not change permissions of your **HOME** dir and sub dirs, if it goes wrong, your login will be blocked because ssh checks for strict permissions
+```
 It may become necessary to share data with other users. Using access control lists (ACL) you can specify permissions on a per-user basis.
 
 To minimize permission management, you may find it easist to create a designated directory just for sharing data like so
