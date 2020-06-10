@@ -51,8 +51,8 @@ mkdir /scratch/user_name/shared
 ```
 Allow `guest_user` read access to the shared directory:
 ```
-setfacl -Rdm user:guest_user:rx /scratch/user_name/shared  (this will allow new files to be shared)
-setfacl -Rm user:guest_user:rx /scratch/user_name/shared   (this will allow existing files to be shared)
+setfacl -Rdm user:guest_user:r-x /scratch/user_name/shared  (this will allow new files to be shared)
+setfacl -Rm user:guest_user:r-x /scratch/user_name/shared   (this will allow existing files to be shared)
 ```
 
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
