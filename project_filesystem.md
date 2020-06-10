@@ -4,92 +4,52 @@ Starting around mid-March, users began reporting multiple issues due to high loa
 
 We have since stabilized the filesystem but have made it read-only to decrease the load and prevent further file access issues. The filesystem will remain in this state until June when we can deploy a new, previously planned filesystem and migrate all project data.
 
-Previously, users were instructed to run their jobs in the /staging filesystem until our new project filesystem was up and running. However, /staging nearly reached its limited capacity within a few weeks. As a result, we have created a new, high-performing parallel filesystem for production runs called **/scratch**, which has a much larger capacity than /staging.
+Previously, users were instructed to run their jobs in the /staging filesystem until our new project filesystem was up and running. However, /staging nearly reached its limited capacity within a few weeks. As a result, we have created two new, high-performing parallel filesystems for production runs called **/scratch and /scratch2**, each of which have a much larger capacity than /staging.
 
-## /scratch: an all new, high-performing parallel filesystem
+/staging was decommissioned on June 5, 2020.
+
+## /scratch and /scratch2: two all new, high-performing parallel filesystems
 
 Your scratch directory is located at:
 
     /scratch/<username>
 
-You should now be using /scratch for your production runs instead of /staging.
+/scratch has a capacity of 806TB.
 
-The new /scratch filesystem has a capacity of 806TB (compared to 266TB on /staging) and it can sustain 25GB/s of reading and writing performance, which is almost twice as much as /staging.
+Your scratch2 directory is located at:
 
-Your scratch directory is accessible only to you, and each user account is limited to a 10TB quota. If you need more space than this, please contact us at hpc@usc.edu.
+    /scratch2/<username>
 
-Please note that /scratch is only usable with compute nodes on the Infiniband network. To request these nodes, add the ` #SBATCH --constraint=IB` option to your job scripts.
+/scratch2 has a capacity of 709TB.
 
-## /staging: decommissioned
+You should now be using /scratch or /scratch2 for your production runs instead of /staging.
 
-## /scratch2: 709TB 
+Both directories are accessible only to you, and each user account is limited to a 10TB quota for each directory. If you need more space than this, please contact us at hpc@usc.edu.
 
-### How should I perform the data migration
-
-There are two options to migrate data using an `rsync` command: (1) use the hpc-transfer node or (2) submit a SLURM job.
-
-Note: first delete any files in /staging that are no longer needed. This will reduce the time needed to copy files. Additionally, regenerating data is much faster than copying data. For example, if you have a large custom Python or R installation under /staging, simply re-install it under /scratch rather than copying.
-
-#### Via hpc-transfer
-
-The hpc-transfer node, which has been recently upgraded with new hardware and new 40GB links, can migrate data in and out much faster than the login nodes.
-
-From your computer, log in to hpc-transfer.usc.edu and authenticate via Duo:
-
-```
-ssh ttrojan@hpc-transfer.usc.edu
-```
-
-Note: If you get an SSH error about 'remote host identification has changed' when attempting to connect, the solution is to clear your 'known_hosts' file that is referenced in the error message. Open the 'known_hosts' key and manually delete the line beginning with 'hpc-transfer.usc.edu' and then save. Try the command again, confirm the new authenticity of host, and the error should be solved.
-
-Once connected, use `screen` in combination with an `rsync` command, because the transfer could take a long time.
-
-First, enter `screen` at the command line to start a `screen` session.
-
-Second, enter an `rsync` command that looks something like the following:
-
-```
-rsync -avP /staging/proj/user/ /scratch/user/
-```
-
-Be sure to substitute your correct directory paths. This will start the transfer and display its progress.
-
-Next, depress the keys `ctrl-a d` to detach the `screen` session, which continues the `rsync` job in the background. You can then continue other work or log out and the transfer will continue. To reattach that session and check progress enter `screen -r`. Once the transfer is complete, you can close the screen session by entering `exit` from within the session.
-
-#### Via SLURM job
-
-Alternatively, if you anticipate a long, multi-day transfer time, submit a SLURM job script using Infiniband nodes that looks something like the following:
-
-```
-#!/bin/bash
-#SBATCH --ntasks=1
-#SBATCH --time=48:00:00
-#SBATCH --constraint=IB
-
-rsync -avP /staging/proj/user/ /scratch/user/
-```
-
-Be sure to substitute the anticipated walltime needed and your directory paths.
+Please note that /scratch and /scratch2 are only usable with compute nodes on the Infiniband network. To request these nodes, add the ` #SBATCH --constraint=IB` option to your job scripts.
 
 ## Backups
 
-There are no backups for either /scratch or /staging. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
+There are no backups for either /scratch or /scratch2. Please keep additional copies of your important data elsewhere to prevent accidental data loss. (If your PhD thesis relies on your data, keep at least three copies.)
 
 ## Sharing data with others
 
-When sharing your files, please keep these in mind:
-1. **never** set permission of dirs your own to **777**, which means **anybody** can delete your file
-1. sharing **read** permission is sufficent, do not allow others to **write** to dirs you own, nor should you write to another user's dir
-1. do not change permissions of your **HOME** dir and sub dirs, if it goes wrong, your login will be blocked because ssh checks for strict permissions
+When sharing your files, please keep the following in mind:
 
-It may become necessary to share data with other users. Using access control lists (ACL) you can specify permissions on a per-user basis.
+1. Never set the permissions of your own directories to **777**, which means that **anybody can delete your files**.
 
-To minimize permission management, you may find it easist to create a designated directory just for sharing data like so
+2. Giving other users **read** permission for your files is sufficient. Do not allow others to **write** to directories that you own, nor should you write to another user's directory.
+
+3. Do not change the permissions of your **HOME** directory and sub directories. If something goes wrong, your login will be blocked because ssh checks for strict permissions.
+
+It may become necessary to share data with other users. Using access-control lists (ACLs), you can specify permissions on a per-user basis.
+
+To minimize permission management, you may find it easier to create a designated directory just for sharing data. You can do this like so:
 
 ```
 mkdir /scratch/user_name/shared
 ```
-Allow `guest_user` read access to the shared directory
+Allow `guest_user` read access to the shared directory:
 ```
 setfacl -Rdm user:guest_user:rx /scratch/user_name/shared  (this will allow new files to be shared)
 setfacl -Rm user:guest_user:rx /scratch/user_name/shared   (this will allow existing files to be shared)
@@ -97,7 +57,7 @@ setfacl -Rm user:guest_user:rx /scratch/user_name/shared   (this will allow exis
 
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
 
-If you forget which permissions have been set you can run `getfacl` to check which ACLs have been set:
+If you forget which permissions have been set, you can run `getfacl` to check which ACLs have been set:
 
 ```
 [ttroj@hpc-login2 new_dir2]$ getfacl test_file
