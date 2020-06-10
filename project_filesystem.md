@@ -42,12 +42,13 @@ When sharing your files, please keep the following in mind:
 
 3. Do not change the permissions of your **HOME** directory and sub directories. If something goes wrong, your login will be blocked because ssh checks for strict permissions.
 
+By default, your /scratch/user_name permission is set to 700, which means only yourself can read,write,exec. 
 It may become necessary to share data with other users. Using access-control lists (ACLs), you can specify permissions on a per-user basis.
 
 Allow `guest_user` read access to your scratch directory:
 ```
-setfacl -Rdm u:guest_user:r-x /scratch/user_name  (this will allow new files to be shared)
-setfacl -Rm u:guest_user:r-x /scratch/user_name (this will allow existing files to be shared)
+setfacl -Rdm u:guest_user:r-x /scratch/user_name  #(this will allow new files to be shared)
+setfacl -Rm u:guest_user:r-x /scratch/user_name   #(this will allow existing files to be shared)
 ```
 
 By adding the `-d` option, new files and directories will have the same ACLs as their parent directory applied at creation. The `-R` option will recursively set access.
