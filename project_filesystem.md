@@ -92,17 +92,13 @@ Installing software on /scratch and /scratch2 should be as easy as installing it
 
 Python allows you to install and load packages from arbitrary directories.
 
-Assume you have a directory of the form:
+To install Python packages in a library other than the default (`~/.local/lib/python3.6/site-packages`), you can use the `--target` option with `pip3`:
 
-    package_root=/scratch/<username>/python_packages
-
-You can install packages like so:
-
-    pip3 install <package_name> --root=$package_root
+    pip3 install <package_name> --target /scratch/<username>/python_packages
 
 To load a package, ensure you have appended your `PYTHONPATH` environment variable like so:
 
-    export PYTHONPATH=${package_root}/lib/python3.7/site-packages:${PYTHONPATH}
+    export PYTHONPATH=/scratch/<username>/python_packages:${PYTHONPATH}
 
 ### R
 
@@ -131,5 +127,5 @@ Alternatively, users can take advantage of symbolic links (`symlinks`) to avoid 
 To load an R package, run a command of the form:
 
 ```r
-library("package_name", lib.loc = "package_path")
+library(package_name, lib.loc = "package_path")
 ```
