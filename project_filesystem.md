@@ -14,13 +14,13 @@ Your scratch directory is located at:
 
     /scratch/<username>
 
-/scratch has a capacity of 806TB.
+/scratch has a capacity of 806TB. Use the `cds` command to quickly change to your scratch directory.
 
 Your scratch2 directory is located at:
 
     /scratch2/<username>
 
-/scratch2 has a capacity of 709TB.
+/scratch2 has a capacity of 709TB. Use the `cds2` command to quickly change to your scratch2 directory.
 
 You should now be using /scratch or /scratch2 for your production runs instead of /staging.
 
