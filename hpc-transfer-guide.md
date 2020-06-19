@@ -46,7 +46,7 @@ myplot1.jpg	myplot2.jpg
 ```
 sftp> pwd
 Remote working directory: /home1/ttrojan
-sftp> cd /scratch/tt/ttrojan/images
+sftp> cd /scratch/tt/ttrojan
 ```
 
 ### Upload file from local to remote computer
@@ -55,6 +55,14 @@ sftp> cd /scratch/tt/ttrojan/images
 sftp> put myplot1.jpg myplot.jpg
 Uploading myplot1.jpg to /scratch/tt/ttrojan/myplot.jpg
 myplot1.jpg                                 100%   10KB   2.4MB/s   00:00    
+```
+
+### Download file from remote to local computer
+
+```
+sftp> get myplot3.jpg myplot3.jpg
+Fetching /scratch/tt/trojan/myplot3.jpg to myplot3.jpg
+/scratch/tt/trojan/myplot3.jpg              100%   10KB   2.4MB/s   00:00    
 ```
 
 ## SCP: Secure Copy Protocol
