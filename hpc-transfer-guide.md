@@ -129,4 +129,8 @@ sent 10208 bytes  received 42 bytes  1205.88 bytes/sec
 total size is 10079  speedup is 0.98
 ```
 
-The `-a` option specifies that it will be an archive (and so preserves permissions and modification times, and recursively transfers directories). The `-v` option turns on verbose mode, and the `--progress` option shows transfer progress. Rsync provides many options; see the manual page (`man rsync`) for details.
+The `-a` option specifies that it will be an archive (and so preserves permissions and modification times, and recursively transfers directories). The `-v` option turns on verbose mode, and the `--progress` option shows transfer progress.
+
+If you experience issues with disconnections from the server during an rsync transfer, try adding the option `--timeout=60` to keep the connection alive for 60 seconds in case the transfer idles. Sometimes network latency can cause disconnects.
+
+Rsync provides many other options; see the manual page (`man rsync`) or online documentation [here](https://download.samba.org/pub/rsync/rsync.1) for details.
