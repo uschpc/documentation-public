@@ -18,7 +18,7 @@ ssh ttrojan@hpc-transfer.usc.edu
 
 Substitute `ttrojan` with your username, which is your USC NetID (the first part of your USC email address).
 
-> Note: If you get an SSH error about "remote host identification has changed" when attempting to connect, the solution is to clear your "known_hosts" file that is referenced in the error message. Open the "known_hosts" key and manually delete the line beginning with "hpc-transfer.usc.edu" and then save. Try the login command again, confirm the new authenticity of the host, and the error should no longer occur.
+> Note: If you get an SSH error about "remote host identification has changed" when attempting to connect, the solution is to clear your "known_hosts" file that is referenced in the error message. Open the "known_hosts" file in your .ssh directory under your /home (note the "." in front of the directory name) and manually delete the line beginning with "hpc-transfer.usc.edu" and then save. Try the login command again, confirm the new authenticity of the host, and the error should no longer occur.
 
 #### Step 2: Start a Screen session
 
