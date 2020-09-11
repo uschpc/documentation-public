@@ -57,7 +57,11 @@ This will start the transfer and display its progress.
 
 Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/
 
-If there are specific files or directories that you do not need to transfer, add the `--exclude` option and specify the files or directories.
+If there are specific files or directories that you do not need to transfer, add the `--exclude` option and specify the files or directories. For example, if you
+want to exclude `/home/rcf-proj/xxx/yyy/Anaconda` and `/home/rcf-proj/xxx/yyy/R`
+```
+rsync -avP --exclude 'Anaconda' --exclude 'R' /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
+```
 
 Information on the exclude option: https://linuxize.com/post/how-to-exclude-files-and-directories-with-rsync/
 
