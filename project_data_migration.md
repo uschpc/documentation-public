@@ -30,10 +30,10 @@ Information on `screen`: https://linuxize.com/post/how-to-use-linux-screen/
 
 Identify and document unwanted or re-generatable/re-downloadable data from your /home/rcf-proj directory, especially those folders with large amounts of small files (e.g., custom Python/R/Anaconda installations). These small files will slow down the migration substantially. Specific files and directories can be excluded from the transfer.
 
-Also check if your new directory under the new project file system, /project, on Discovery is created already. If not, you can create one like so:
+Also check if your new directory under the new project file system, /project, on Discovery is created already. A storage allocaiton for each project has been created and you should see:
 
 ```
-mkdir /project/aaa/bbb
+/project/userid_project#
 ```
 
 #### Step 4: Start migration using rsync
