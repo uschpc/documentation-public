@@ -1,6 +1,6 @@
 ## Migrating your data from rcf-proj to the new project file system
 
-The CARC's new project file system, /project, is now ready to migrate your data from /home/rcf-proj to.
+The CARC's new project file system, /project, is now ready for you to migrate your data from /home/rcf-proj.
 
 ### How should I perform the data migration?
 
@@ -28,16 +28,17 @@ Information on `screen`: https://linuxize.com/post/how-to-use-linux-screen/
 
 #### Step 3: Identify data to be migrated
 
-Identify and document unwanted or re-generatable/re-downloadable data from your /home/rcf-proj directory, especially those folders with large amounts of small files (e.g., custom Python/R/Anaconda installations). These small files will slow down the migration substantially. Specific files and directories can be excluded from the transfer.
+Identify and document unwanted or re-generatable/re-downloadable data from your /home/rcf-proj directory, especially those folders with large amounts of small files (e.g., custom Python/R/Anaconda installations). These small files will slow down the migration substantially. Specific files and directories can be excluded from the transfer (see below).
 
-Also check if your new directory under the new project file system, /project, on Discovery is created already. A storage allocaiton for each project has been created and you should see:
+Also check if your new directory under the new project file system, /project, is created already. Your new project directories can be identified with the command `ls -l /project | grep $USER`. A storage allocation for each project has been created and you should see:
 
 ```
 /project/<PI_name>_xxx
 ```
 
-here `PI_name` is the usernme of the project owner, `xxx` is a 2~3 digit number. If you belong to the project `<PI_name>_xxx`, you will be able to create your 
-own sub dir under it
+where `PI_name` is the username of the project owner, `xxx` is a 2~3 digit number. You can also find the project ID and path on the project page in the [User Portal](https://carc.usc.edu/user-information/user-guides/high-performance-computing/research-computing-user-portal).
+
+If you belong to the project `<PI_name>_xxx`, you will be able to create your own subdirectory under it:
 
 ```
 mkdir /project/<PI_name>_xxx/username
@@ -51,18 +52,15 @@ Enter an `rsync` command that looks something like the following:
 rsync -avP /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
 
-`/home/rcf-proj` will be your source and `/project` will be your destination. Be sure to substitute your correct `rcf-proj` and `/project` directory paths, and pay attention to the trailing `/` in the paths.
+`/home/rcf-proj` will be your source and `/project` will be your destination. Be sure to substitute your correct `rcf-proj` and `/project` directory paths, and pay attention to the trailing `/` in the paths. This will start the transfer and display its progress.
 
-This will start the transfer and display its progress.
+If there are specific files or directories that you do not need to transfer, add the `--exclude` option and specify the files or directories with a relative path based on the source directory. For example, if you want to exclude `/home/rcf-proj/xxx/yyy/Anaconda` and `/home/rcf-proj/xxx/yyy/R`, then use:
 
-Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/
-
-If there are specific files or directories that you do not need to transfer, add the `--exclude` option and specify the files or directories. For example, if you
-want to exclude `/home/rcf-proj/xxx/yyy/Anaconda` and `/home/rcf-proj/xxx/yyy/R`
 ```
 rsync -avP --exclude 'Anaconda' --exclude 'R' /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
 
+Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/
 Information on the exclude option: https://linuxize.com/post/how-to-exclude-files-and-directories-with-rsync/
 
 #### Step 5: Detach from the Screen session
