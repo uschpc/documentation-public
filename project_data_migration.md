@@ -33,7 +33,14 @@ Identify and document unwanted or re-generatable/re-downloadable data from your 
 Also check if your new directory under the new project file system, /project, on Discovery is created already. A storage allocaiton for each project has been created and you should see:
 
 ```
-/project/userid_project#
+/project/<PI_name>_xxx
+```
+
+here `PI_name` is the usernme of the project owner, `xxx` is a 2~3 digit number. If you belong to the project `<PI_name>_xxx`, you will be able to create your 
+own sub dir under it
+
+```
+mkdir /project/<PI_name>_xxx/username
 ```
 
 #### Step 4: Start migration using rsync
