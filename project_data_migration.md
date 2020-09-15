@@ -49,8 +49,9 @@ mkdir /project/<PI_name>_xxx/username
 Enter an `rsync` command that looks something like the following:
 
 ```
-rsync -avP /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
+rsync -rltvP /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
+> Note: using `rsync -a` option will cause group ID mismatch between the two systems, and leads to wrong quota info.
 
 `/home/rcf-proj` will be your source and `/project` will be your destination. Be sure to substitute your correct `rcf-proj` and `/project` directory paths, and pay attention to the trailing `/` in the paths. This will start the transfer and display its progress.
 
