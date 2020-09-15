@@ -58,7 +58,7 @@ rsync -rltvP /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 If there are specific files or directories that you do not need to transfer, add the `--exclude` option and specify the files or directories with a relative path based on the source directory. For example, if you want to exclude `/home/rcf-proj/xxx/yyy/Anaconda` and `/home/rcf-proj/xxx/yyy/R`, then use:
 
 ```
-rsync -avP --exclude 'Anaconda' --exclude 'R' /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
+rsync -rltvP --exclude 'Anaconda' --exclude 'R' /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
 
 Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/
