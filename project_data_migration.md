@@ -51,7 +51,7 @@ Enter an `rsync` command that looks something like the following:
 ```
 rsync -rltvP /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
-> Note: using `rsync -a` option will cause group ID mismatch between the two systems, and leads to wrong quota info.
+> Note: Using the `rsync -a` option will cause a group ID mismatch between the two systems, and leads to wrong quota info.
 
 `/home/rcf-proj` will be your source and `/project` will be your destination. Be sure to substitute your correct `rcf-proj` and `/project` directory paths, and pay attention to the trailing `/` in the paths. This will start the transfer and display its progress.
 
@@ -61,7 +61,8 @@ If there are specific files or directories that you do not need to transfer, add
 rsync -rltvP --exclude 'Anaconda' --exclude 'R' /home/rcf-proj/xxx/yyy/ /project/aaa/bbb/
 ```
 
-Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/
+Information on `rsync`: https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/  
+
 Information on the exclude option: https://linuxize.com/post/how-to-exclude-files-and-directories-with-rsync/
 
 #### Step 5: Detach from the Screen session
