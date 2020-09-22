@@ -2,6 +2,8 @@
 
 The CARC's new project file system, /project, is now ready for you to migrate your data from /home/rcf-proj.
 
+> Note: These instructions can be used for migrating your data from /rcf-proj, /scratch, and /scratch2, but the examples used are specific to migrating from /rcf-proj. To migrate from /scratch or /scratch2: Use either hpc-transfer1 or hpc-transfer2, **not** hpc-transfer, in step 1. Then simply substitute the source path to your data in /scratch or /scratch2 in step 4.
+
 ### How should I perform the data migration?
 
 The hpc-transfer node has dedicated 40 GB/s links to both the old /home/rcf-proj and the new /project file systems, so data migration in and out is much faster than using other login nodes.
