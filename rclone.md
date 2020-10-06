@@ -51,6 +51,7 @@ An example command:
 ```
 rclone copy --update --contimeout 60s --timeout 300s --retries 3 --transfers 30  "/scratch/<username>/files" "google-drive:ProjectDocs"
 ```
+* Note: If the destination folder does not exist, `rclone` will create it.
 To check if the files have transferred properly, you can manually look or use `rclone ls remote:path`.
 Additionally, `rclone copy` can be used within a regularly executed bash script to emulate a scheduled "backup" to your cloud service.
 
