@@ -1,6 +1,6 @@
 
 ## Rclone
-`rclone` is a commandline based utility for managing files in cloud storage. `rclone`allows users to sync files from a local drive or location to a cloud storage like Google Drive, Dropbox, OneDrive, etc. This is useful for backing up, downloading, and synchronizing files on Linux to more easily accessible cloud solutions.
+`rclone` is a Linux commandline based utility for managing files in cloud storage. `rclone`allows users to sync files from a local drive or location to a cloud storage like Google Drive, Dropbox, OneDrive, etc. This is useful for backing up, downloading, and synchronizing files on Linux to more easily accessible cloud solutions.
 
 ### Creating an rclone Remote Connection
 Usage of each cloud service requires the setup of a "remote." To begin the process, use the command `rclone config`. <br>
@@ -32,7 +32,7 @@ Choose "1" as `scope` for access of all files.
 Afterwards, the main config menu should now look differently and have more options for your newly created remote.
 
 ### Backing up Files
-The `rclone copy` command allows the transferring of files between a source and destination, for example, from the Discovery cluster to a Google Drive. `copy` is useful as it skips over files that already exist in the destination. It is very similar to `rsync`.
+The `rclone copy` command creates copies of files between a source and destination, for example, from the Discovery cluster to a Google Drive. `copy` is useful as it skips over files that already exist in the destination. It is very similar to `rsync`.
 The command takes the form of:
 ```
 rclone copy source:sourcepath dest:destpath
