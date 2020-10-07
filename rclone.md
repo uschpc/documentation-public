@@ -2,6 +2,9 @@
 ## Rclone
 `rclone` is a Linux commandline based utility for managing files in cloud storage. `rclone`allows users to sync files from a local drive or location to a cloud storage like Google Drive, Dropbox, OneDrive, etc. This is useful for backing up, downloading, and synchronizing files on Linux to more easily accessible cloud solutions.
 
+### Loading the rclone module
+First, to use `rclone` 
+
 ### Creating an rclone Remote Connection
 Usage of each cloud service requires the setup of a "remote." To begin the process, use the command `rclone config`. <br>
 When first creating a remote, the following script should appear:
@@ -40,9 +43,6 @@ rclone copy source:sourcepath dest:destpath
 **Optional:**
 * Using the flag `--update` checks that skipped files in the remote destination have a newer modified time than the file being transferred. This ensures the newest version of files is available in the cloud.
 * `--verbose` gives information about every file being transferred. This can create a lot of screen output but may be helpful to spot problems. 
-* Set connection timeout and transfer idle timeout with `--contimeout <time>` and `--timeout <time>` respectively.
-* `--retries <number>` specifies the maximum number of errors that can occur or the entire transfer will start over.
-* `--transfers <number>` specifies the number of files that are copied in parallel.
 * `--no-traverse` flag prevents rclone from transversing the directory when copying files. If the remote destination is very large, this can save a lot of time. However if there are many files that have no changes/won't need copying, do not use this flag.
 * Using filters like `--max-age <time>` pr `--max-size <size>` will make the copying process more efficient and avoid copying transversing unwanted files. <br>
 
@@ -50,9 +50,9 @@ The entire list of options can be found [here](https://rclone.org/docs/).
 
 An example command:
 ```
-rclone copy --update --contimeout 60s --timeout 300s --retries 3 --transfers 30  "/scratch/<username>/files" "google-drive:ProjectDocs"
+rclone copy --update "/scratch/<username>/files" "google-drive:ProjectDocs"
 ```
-* Note: If the destination folder does not exist, `rclone` will create it.
+* Note: If the destination folder does not exist, `rclone` will create it. <br>
 To check if the files have transferred properly, you can manually look or use `rclone ls remote:path`.
 Additionally, `rclone copy` can be used within a regularly executed bash script to emulate a scheduled "backup" to your cloud service.
 
