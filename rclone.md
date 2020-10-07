@@ -45,6 +45,7 @@ rclone copy source:sourcepath dest:destpath
 * `--transfers <number>` specifies the number of files that are copied in parallel.
 * `--no-traverse` flag prevents rclone from transversing the directory when copying files. If the remote destination is very large, this can save a lot of time. However if there are many files that have no changes/won't need copying, do not use this flag.
 * Using filters like `--max-age <time>` pr `--max-size <size>` will make the copying process more efficient and avoid copying transversing unwanted files. <br>
+<br>
 The entire list of options can be found [here](https://rclone.org/docs/).
 
 An example command:
